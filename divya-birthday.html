@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Divya Bharti</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background: radial-gradient(ellipse at center, #1a0f2e 0%, #0a0612 70%, #000 100%);
+    min-height: 100vh; overflow-x: hidden; position: relative; color: #fff;
+  }
+  .stars {
+    position: fixed; inset:0; pointer-events:none; z-index:0;
+    background-image:
+      radial-gradient(2px 2px at 20% 30%, #fff8, transparent),
+      radial-gradient(2px 2px at 70% 60%, #fff6, transparent),
+      radial-gradient(1px 1px at 40% 80%, #fff8, transparent),
+      radial-gradient(1px 1px at 90% 20%, #fff6, transparent),
+      radial-gradient(2px 2px at 55% 15%, #fff5, transparent);
+  }
+  .balloon {
+    position: fixed; width: 80px; height: 100px; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    animation: float 6s ease-in-out infinite; z-index: 1; opacity: 0.9; cursor:pointer; font-size:70px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  @keyframes float { 0%,100%{transform:translateY(0) rotate(-3deg);} 50%{transform:translateY(-25px) rotate(3deg);} }
+  .b1{ top:5%; left:2%; } .b2{ top:8%; right:4%; animation-delay:1s;}
+  .b3{ top:35%; right:1%; animation-delay:2s;} .b4{ top:40%; left:1%; animation-delay:1.5s;}
+
+  .pop-text {
+    position:fixed; font-weight:900; font-style:italic; color:#fff; text-shadow: 0 0 8px #ff69b4;
+    opacity:0; pointer-events:none; font-size:24px; z-index:20;
+  }
+  .pop-text.show { animation: popAnim 0.8s ease-out; }
+  @keyframes popAnim { 0%{opacity:0; transform:scale(0.3);} 30%{opacity:1; transform:scale(1.2);} 100%{opacity:0; transform:scale(1.4);} }
+
+  .confetti { position: fixed; top:-10px; width:8px; height:14px; opacity:0.9; z-index:1; animation: fall linear infinite; }
+  @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
+
+  .container {
+    position: relative; z-index: 5; display:flex; flex-direction:column; align-items:center;
+    justify-content:center; min-height:100vh; padding: 40px 20px; text-align:center;
+  }
+  .sub-title { font-family: 'Brush Script MT', cursive; font-size: 30px; margin-bottom:-8px;}
+  .main-title {
+    font-family: 'Brush Script MT', cursive; font-size: 64px; color:#ffd54f;
+    text-shadow: 0 0 20px #ffd54f99, 0 0 40px #ffb30055; margin: 8px 0;
+  }
+  .name-title { font-size: 30px; font-weight:700; color:#ff8fc7; margin-bottom:14px; }
+  .message { font-size:16px; color:#eee; line-height:1.6; max-width:460px; margin-bottom:26px;}
+  .badi-didi { font-size: 22px; font-weight:700; color:#ff9ecb; margin: 6px 0 22px; }
+
+  #passwordScreen input {
+    width: 320px; max-width: 80vw; padding: 14px 18px; border-radius: 30px;
+    border: 1px solid #ff8fc766; background: #1a0f2e88; color:#fff; font-size:16px; outline:none;
+  }
+  #passwordScreen input::placeholder{ color:#bbb; }
+  .unlock-btn {
+    margin-top: 20px; padding: 14px 40px; border:none; border-radius: 30px; cursor:pointer;
+    background: linear-gradient(90deg,#ff6a9c,#ff8fc7); color:#fff; font-size:17px; font-weight:600;
+    box-shadow: 0 4px 20px #ff6a9c66;
+  }
+  .error-msg { color:#ff8080; margin-top:12px; font-size:14px; min-height:18px; }
+
+  #birthdayScreen { display:none; width:100%; max-width:900px; }
+
+  .bottom-row { display:flex; justify-content:space-between; align-items:flex-end; width:100%; margin-top:20px; gap:20px; flex-wrap:wrap; }
+
+  .sticky-note {
+    background:#f3e3b3; color:#3a2a1a; padding:20px 24px; border-radius:4px; transform:rotate(-4deg);
+    font-family:'Brush Script MT', cursive; font-size:20px; text-align:left; line-height:1.4; box-shadow:0 6px 14px #0007;
+  }
+  .sticky-note .heart{ color:#c0455e; }
+
+  .cake-area { text-align:center; }
+  .special-msg { font-family:'Brush Script MT', cursive; font-size:22px; color:#fff; margin-bottom:10px; }
+  .cake-box {
+    position:relative; width:220px; height:150px; border-radius:16px 16px 40px 40px;
+    background: linear-gradient(180deg,#3a2418,#5c3a24); margin:0 auto; box-shadow:0 8px 20px #0009;
+  }
+  .cake-box::before{
+    content:''; position:absolute; top:-10px; left:0; right:0; height:22px; border-radius:16px;
+    background:#f5e9d8;
+  }
+  .candles { position:absolute; top:-55px; left:0; right:0; display:flex; justify-content:center; gap:14px; }
+  .candles span{ font-size:26px; }
+  .cake-text { position:absolute; top:38%; left:0; right:0; font-family:'Brush Script MT', cursive; font-size:15px; color:#ffe9c2; }
+
+  .sound-toggle {
+    margin-top:26px; display:flex; align-items:center; gap:10px; background:#1a0f2e88;
+    padding:10px 20px; border-radius:30px; border:1px solid #ff8fc744; font-size:14px; color:#ddd;
+  }
+  .sound-toggle button { background:#ff6a9c; border:none; color:#fff; width:32px; height:32px; border-radius:50%; cursor:pointer; }
+</style>
+</head>
+<body>
+<div class="stars"></div>
+
+<div class="balloon b1" onclick="popBalloon(this)">🎈</div>
+<div class="balloon b2" onclick="popBalloon(this)">🎈</div>
+<div class="balloon b3" onclick="popBalloon(this)">🎈</div>
+<div class="balloon b4" onclick="popBalloon(this)">🎈</div>
+
+<div class="container">
+
+  <div id="passwordScreen">
+    <div class="sub-title">A very special</div>
+    <div class="main-title">Happy Birthday 💛</div>
+    <div class="name-title">♡ Divya Bharti ♡</div>
+    <div class="message">
+      May your dreams be as big as your smile, and your life be filled
+      with happiness, love and success... always! 💗
+    </div>
+    <input type="password" id="pwInput" placeholder="Enter password..." maxlength="10" onkeydown="if(event.key==='Enter')checkPassword()">
+    <br>
+    <button class="unlock-btn" onclick="checkPassword()">Unlock My Birthday Message 💗</button>
+    <div class="error-msg" id="errorMsg"></div>
+  </div>
+
+  <div id="birthdayScreen">
+    <div class="message">
+      May your dreams be as big as your smile, and your life be filled
+      with happiness, love and success... always! 💗
+    </div>
+    <div class="badi-didi">❤️ For my badi didi ❤️</div>
+
+    <div class="bottom-row">
+      <div class="sticky-note">Stay Happy<br>Stay Blessed<br>- Anurag <span class="heart">♡</span></div>
+      <div class="cake-area">
+        <div class="special-msg">Special message<br>for you ♡</div>
+        <div class="cake-box">
+          <div class="candles"><span>🕯️</span><span>🕯️</span><span>🕯️</span><span>🕯️</span><span>🕯️</span></div>
+          <div class="cake-text">Happy Birthday<br>Divya Bharti</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sound-toggle">
+      <button onclick="toggleTune()" id="tuneBtn">🔊</button>
+      <span>🎵 Birthday Tune</span>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const colors = ['#ff6a9c','#ffd54f','#7ad3ff','#c07af0','#ff9e6a'];
+for(let i=0;i<40;i++){
+  const c = document.createElement('div');
+  c.className='confetti';
+  c.style.left = Math.random()*100+'vw';
+  c.style.background = colors[Math.floor(Math.random()*colors.length)];
+  c.style.animationDuration = (4+Math.random()*4)+'s';
+  c.style.animationDelay = (Math.random()*5)+'s';
+  document.body.appendChild(c);
+}
+
+let audioCtx;
+function getCtx(){
+  if(!audioCtx) audioCtx = new (window.AudioContext||window.webkitAudioContext)();
+  if(audioCtx.state === 'suspended') audioCtx.resume();
+  return audioCtx;
+}
+function playPopSound(){
+  const ctx = getCtx();
+  const o = ctx.createOscillator(); const g = ctx.createGain();
+  o.type='sine'; o.frequency.setValueAtTime(600,ctx.currentTime);
+  o.frequency.exponentialRampToValueAtTime(120,ctx.currentTime+0.15);
+  g.gain.setValueAtTime(0.35,ctx.currentTime);
+  g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+0.2);
+  o.connect(g); g.connect(ctx.destination);
+  o.start(); o.stop(ctx.currentTime+0.2);
+}
+function popBalloon(el){
+  playPopSound();
+  const label=document.createElement('div');
+  label.className='pop-text show'; label.textContent='*POP*';
+  const rect = el.getBoundingClientRect();
+  label.style.left = rect.left+'px'; label.style.top = rect.top+'px';
+  document.body.appendChild(label);
+  el.style.transition='transform 0.2s, opacity 0.2s';
+  el.style.transform='scale(1.4)'; el.style.opacity='0';
+  setTimeout(()=>{ el.style.transform='scale(1)'; el.style.opacity='0.9'; label.remove(); },800);
+}
+
+function checkPassword(){
+  const val = document.getElementById('pwInput').value.trim();
+  const err = document.getElementById('errorMsg');
+  if(val === '2006'){
+    getCtx();
+    err.textContent='';
+    let i=0;
+    const seq = setInterval(()=>{
+      playPopSound(); i++;
+      if(i>=4){
+        clearInterval(seq);
+        document.getElementById('passwordScreen').style.display='none';
+        document.getElementById('birthdayScreen').style.display='block';
+        startTune();
+      }
+    },350);
+  } else {
+    err.textContent = 'Galat password, dobara try karo 💔';
+  }
+}
+
+let tunePlaying=false, tuneInterval, noteIdx=0;
+const notes=[523,587,659,523,523,587,659,523,659,698,784,659,698,784,659,587,523,494,523];
+function playNote(){
+  const ctx=getCtx();
+  const o=ctx.createOscillator(); const g=ctx.createGain();
+  o.type='triangle'; o.frequency.value=notes[noteIdx%notes.length];
+  g.gain.setValueAtTime(0.16,ctx.currentTime);
+  g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+0.35);
+  o.connect(g); g.connect(ctx.destination);
+  o.start(); o.stop(ctx.currentTime+0.35);
+  noteIdx++;
+}
+function startTune(){
+  if(tunePlaying) return;
+  tunePlaying=true;
+  document.getElementById('tuneBtn').textContent='🔊';
+  tuneInterval=setInterval(playNote,400);
+}
+function toggleTune(){
+  const btn=document.getElementById('tuneBtn');
+  if(tunePlaying){ clearInterval(tuneInterval); tunePlaying=false; btn.textContent='🔇'; }
+  else{ startTune(); }
+}
+</script>
+</body>
+</html>
